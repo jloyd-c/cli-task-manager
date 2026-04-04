@@ -14,10 +14,14 @@ def add_task(user):
     task.append(user)
     print("Task added successfully!")
 
+# function to view task
+def list_task():
+    for index, list_tasks in enumerate(task, start=1):
+        print(f"{index}. {list_tasks}")
+
 # main system
 while True:
     option()
-    
     try:
         user = int(input("Choose an option: "))
     except ValueError:
@@ -30,6 +34,12 @@ while True:
             print("Empty Task is not allowed!")
             continue
         add_task(user_task)
+
+    if user == 2:
+        if len(task) == 0:
+            print("Empty list")
+        else:
+            list_task()
 
 # Stop the system
     if user == 4:
