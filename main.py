@@ -35,12 +35,12 @@ while True:
             continue
         add_task(user_task)
 
-    if user == 2:
+    elif user == 2:
         if len(task) == 0:
             print("Empty list")
         else:
             list_task()
 
 # Stop the system
-    if user == 4:
+    elif user == 4:
         break
