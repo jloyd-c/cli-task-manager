@@ -17,7 +17,26 @@ def add_task(user):
 # function to view task
 def list_task():
     for index, list_tasks in enumerate(task, start=1):
-        print(f"{index}. {list_tasks}")
+        if list_tasks['mark'] == True:
+            check_mark = "[✔]"
+        else:
+            check_mark = "[ ]"
+        print(f"{check_mark} {index}. {list_tasks['task']}")
+
+# function to mark task done
+def mark_task(user_input):
+    for index, list_tasks in enumerate(task, start=1):
+        if index == user_input:
+            list_tasks['mark'] = True
+
+        if list_tasks['mark'] == True:
+            check_mark = "[✔]"
+        else:
+            check_mark = "[ ]"
+
+        print(f"{check_mark} {index}. {list_tasks['task']}")
+
+        
 
 # main system
 while True:
@@ -33,7 +52,11 @@ while True:
         if len(user_task) == 0:
             print("Empty Task is not allowed!")
             continue
-        add_task(user_task)
+        new_task = {
+            "task" : user_task,
+            "mark" : False
+            }
+        add_task(new_task)
 
     elif user == 2:
         if len(task) == 0:
@@ -41,6 +64,16 @@ while True:
         else:
             list_task()
 
+    elif user == 3:
+        list_task()
+        try:
+            user_mark_task = int(input("Choose task to mark done: "))
+        except ValueError:
+            print("Invalid Input, Please Enter a number!")
+            continue
+
+        mark_task(user_mark_task)
+        
 # Stop the system
     elif user == 4:
         break
