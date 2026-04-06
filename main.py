@@ -1,4 +1,5 @@
 import json
+from tabulate import tabulate
 
 # file handling using json as a data saver
 try:
@@ -13,13 +14,23 @@ except json.decoder.JSONDecodeError:
 
 # function to display options
 def option():
-    print("======== MENU ========")
-    print("1. Add Task")
-    print("2. View Task")
-    print("3. Mark Task as Done")
-    print("4. Remove Task")
-    print("5. Edit Task")
-    print("6. Exit")
+    print("")
+    print("")
+    print("╔════════════════════════════╗")
+    print("║ ╔════════════════════════╗ ║")
+    print("║ ║          MENU          ║ ║")
+    print("║ ╚════════════════════════╝ ║")
+    print("║ ╔════════════════════════╗ ║")
+    print("║ ║ 1. Add Task            ║ ║")
+    print("║ ║ 2. View Task           ║ ║")
+    print("║ ║ 3. Mark Task as Done   ║ ║")
+    print("║ ║ 4. Remove Task         ║ ║")
+    print("║ ║ 5. Edit Task           ║ ║")
+    print("║ ║ 6. Exit                ║ ║")
+    print("║ ╚════════════════════════╝ ║")
+    print("╚════════════════════════════╝")
+    print("")
+    print("")
 
 # function to add task
 def add_task(user):
@@ -28,15 +39,20 @@ def add_task(user):
 
 # function to view task
 def list_task():
+    table = []
     for index, list_tasks in enumerate(task, start=1):
         if list_tasks['mark'] == True:
             check_mark = "[✔]"
         else:
             check_mark = "[ ]"
-        print(f"{check_mark} {index}. {list_tasks['task']}")
+
+        table.append([index, check_mark, list_tasks['task']])
+    print(tabulate(table, headers=["#", "Status", "Task"], tablefmt="double_outline"))
+
 
 # function to mark task done
 def mark_task(user_input):
+    print("══════════════════════════════")
     for index, list_tasks in enumerate(task, start=1):
         if index == user_input:
             list_tasks['mark'] = True
@@ -47,6 +63,7 @@ def mark_task(user_input):
             check_mark = "[ ]"
 
         print(f"{check_mark} {index}. {list_tasks['task']}")
+    print("══════════════════════════════")
 
         
 
@@ -54,7 +71,11 @@ def mark_task(user_input):
 while True:
     option()
     try:
+        print("")
+        print("==========================")
         user = int(input("Choose an option: "))
+        print("==========================")
+        print("")
     except ValueError:
         print("Invalid Input, Please Enter a number!")
         continue
