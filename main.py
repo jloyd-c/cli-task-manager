@@ -6,6 +6,9 @@ try:
         task = json.load(file)
 except FileNotFoundError:
     task = []
+except json.decoder.JSONDecodeError:
+    task = []
+
 
 
 # function to display options
