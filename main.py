@@ -1,5 +1,12 @@
-# empty list for tasks
-task = []
+import json
+
+# file handling using json as a data saver
+try:
+    with open("data.json","r") as file:
+        task = json.load(file)
+except FileNotFoundError:
+    task = []
+
 
 # function to display options
 def option():
@@ -107,3 +114,7 @@ while True:
 # Stop the system
     elif user == 6:
         break
+
+    # save data in json
+    with open("data.json", "w", encoding="utf-8") as file:
+        json.dump(task, file, indent= 4)
