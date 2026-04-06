@@ -16,6 +16,17 @@ A simple CLI-based task manager to practice Python fundamentals and simulate rea
 
 ---
 
+## Dependencies
+
+- [`tabulate`](https://pypi.org/project/tabulate/) — used to render the task list as a formatted table
+
+Install with:
+```bash
+pip install tabulate
+```
+
+---
+
 ## How It Works
 
 Tasks are stored as JSON objects with two fields:
@@ -25,13 +36,15 @@ Tasks are stored as JSON objects with two fields:
 
 Data is loaded from `data.json` on startup and saved after every action.
 
+Tasks are displayed using `tabulate` with the `double_outline` table format, showing index, status (`[✔]` or `[ ]`), and task name.
+
 ### Functions
 
 | Function | Description |
 |---|---|
-| `option()` | Displays the styled menu |
+| `option()` | Displays the styled Unicode box menu |
 | `add_task(user)` | Appends a new task dict to the task list |
-| `list_task()` | Prints all tasks with checkmark status |
+| `list_task()` | Prints all tasks as a formatted table using `tabulate` |
 | `mark_task(user_input)` | Marks a task as done by index |
 
 ### Menu Options
@@ -67,6 +80,7 @@ Data is loaded from `data.json` on startup and saved after every action.
 
 ### Sprint 5 — Polish
 - [x] Styled box UI with Unicode borders
+- [x] Task list rendered with `tabulate` (`double_outline` format)
 - [x] Error handling (ValueError, empty input, FileNotFoundError, JSONDecodeError)
 
 ---

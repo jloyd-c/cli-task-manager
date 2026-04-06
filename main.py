@@ -105,6 +105,12 @@ while True:
             print("Invalid Input, Please Enter a number!")
             continue
 
+        if len(task) >= user_mark_task and user_mark_task > 0:
+            print("Task marked done!")
+        else:
+            print("Task doesn't exist!")
+            continue
+
         mark_task(user_mark_task)
 
     elif user == 4:
