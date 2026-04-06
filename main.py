@@ -8,7 +8,8 @@ def option():
     print("2. View Task")
     print("3. Mark Task as Done")
     print("4. Remove Task")
-    print("5. Exit")
+    print("5. Edit Task")
+    print("6. Exit")
 
 # function to add task
 def add_task(user):
@@ -88,7 +89,21 @@ while True:
             print("Task Deleted!")
         else:
             print("Invalid input!")
+
+    elif user == 5:
+        list_task()
+        try:
+            user_edit_task = int(input("Choose task to edit: "))
+        except ValueError:
+            print("Invalid Input, Please Enter a number!")
+            continue
+
+        if len(task) >= user_edit_task and  user_edit_task > 0:
+            edit_task = input("Enter new task: ")
+            
+            task[user_edit_task - 1]["task"] = edit_task
+        
         
 # Stop the system
-    elif user == 5:
+    elif user == 6:
         break
